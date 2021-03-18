@@ -46,6 +46,8 @@ public class SilentLoginAngularAppPortlet extends MVCPortlet {
 			"mainRequire",
 			_npmResolver.resolveModuleName("silent-login-angular-app") + " as main");
 
+			_log.info("Silent Login Angular working...");
+
 		super.doView(renderRequest, renderResponse);
 	}
 
