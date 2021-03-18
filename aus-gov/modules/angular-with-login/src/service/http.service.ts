@@ -12,6 +12,8 @@ export default class HttpService {
 
     apiUrl = "https://webserver-lfrspaings-prd.lfr.cloud/o/custom-api/users/123";
     refreshTokenUrl = window.origin + "/o/oidc/refresh_token/";
+    accessTokenUrl = window.origin + "/o/oidc/access_token/";
+
 
     constructor(@Inject(HttpClient) private httpClient: HttpClient) { }
 
@@ -30,6 +32,13 @@ export default class HttpService {
         console.log("Calling refreshToken service...")
         return this.httpClient.get<any>(this.refreshTokenUrl).pipe(
           map(obj => obj),catchError(e=> this.handleError(e))
+        );
+      }
+
+      accessToken(): Observable<any>{
+        console.log("Calling accessToken service")
+        return this.httpClient.get<any>(this.accessTokenUrl).pipe(
+          map(obj => obj, catchError(e => this.handleError(e)))
         );
       }
 

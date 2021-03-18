@@ -52,16 +52,6 @@ public class SilentLoginAngularAppPortlet extends MVCPortlet {
 	public void doView(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
-		
-		// Get tokens
-		String accessToken = getTokens(renderRequest).get(ACCESS_TOKEN);
-
-		_log.info("AccessToken -> " + accessToken);
-
-		renderRequest.setAttribute("accessToken", accessToken);
-		renderRequest.setAttribute("heroName", "Windstorm");
-		 
-		//TODO send tokens to Angular piece
 
 		renderRequest.setAttribute(
 			"mainRequire",
@@ -69,39 +59,10 @@ public class SilentLoginAngularAppPortlet extends MVCPortlet {
 
 		super.doView(renderRequest, renderResponse);
 	}
-	
-	
-	protected Map<String, String> getTokens(RenderRequest renderRequest) {
-		Map<String, String> tokens = new HashMap<String, String>();
-		HttpSession session = PortalUtil.getOriginalServletRequest(PortalUtil.getHttpServletRequest(renderRequest)).getSession(false);
-		
-		String clientId = (String) session.getAttribute(CLIENT_ID_ATTR);
-
-		_log.info("ClientId from session in SPA server side --> "+ clientId);
-	
-		String accessToken = "";
-		String refreshToken = "";
-		String idToken = "";
-		if(Validator.isNotNull(clientId)) {
-			accessToken = (String) session.getAttribute(ACCESS_TOKEN+SESSION_ATTR_JOINER_CHAR+clientId);
-			refreshToken = (String) session.getAttribute(REFRESH_TOKEN+SESSION_ATTR_JOINER_CHAR+clientId);
-			idToken = (String) session.getAttribute(ID_TOKEN+SESSION_ATTR_JOINER_CHAR+clientId);
-			
-			tokens.put(ACCESS_TOKEN, accessToken);
-			tokens.put(REFRESH_TOKEN, refreshToken);
-			tokens.put(ID_TOKEN, idToken);
-		}
-		
-		_log.info("Access_token ---> " +accessToken);
-		_log.info("Refresh_token --> "+refreshToken);
-		_log.info("Id_token -------> "+idToken);
-		
-		return tokens;
-	}
 
 	@Reference
 	private NPMResolver _npmResolver;
-	
+
 	private static final Log _log = LogFactoryUtil.getLog(SilentLoginAngularAppPortlet.class);
 
 }

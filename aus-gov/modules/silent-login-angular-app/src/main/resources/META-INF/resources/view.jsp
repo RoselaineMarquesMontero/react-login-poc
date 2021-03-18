@@ -2,5 +2,5 @@
 
 <div id="<portlet:namespace />"></div>
 <aui:script require="<%= mainRequire %>">
-	main.default('#<portlet:namespace />', {accessToken:"<%= accessToken %>"});
+	main.default('#<portlet:namespace />');
 </aui:script>

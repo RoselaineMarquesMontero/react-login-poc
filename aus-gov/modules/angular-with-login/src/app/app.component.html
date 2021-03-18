@@ -1,0 +1,12 @@
+
+<h2>Using silent-login-angular...</h2>
+
+<h3>Name of the User from api: {{person.firstName}}!</h3>
+	<div><label>id: </label>{{person.person_id}}</div>
+	<div>
+		<label>name: </label>
+		<input [(ngModel)]="person.firstName" placeholder="name">
+		<button id="callAPI" (click)="makeApiCall()">Call API</button>
+</div>
+
+
