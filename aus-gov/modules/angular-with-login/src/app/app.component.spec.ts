@@ -19,7 +19,6 @@ describe('AppComponent', () => {
   it(`should have as title 'angular-with-login'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-with-login');
   });
 
   it('should render title', () => {
